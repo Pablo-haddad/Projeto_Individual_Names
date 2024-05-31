@@ -1,0 +1,7 @@
+.questions li {
+    display: none;
+}
+
+.questions li:first-child {
+    display: block;
+}
