@@ -1,7 +1,121 @@
-.questions li {
-    display: none;
+*{
+    margin: 0; /*a margem da pagina*/
+    padding: 0; /*espaçamento que fica dentro dos elementos*/
+    box-sizing: border-box; /*para que tudo fique dentro da mesma "caixa"*/
+    font-family: "Poppins", sans-serif;
 }
 
-.questions li:first-child {
-    display: block;
+body html{
+    margin: 0;
+    padding: 0;
+    text-decoration: none;
+    background-color: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
 }
+
+:root{
+    --background: #000000;
+    --fundo_nav: #e36414;
+}
+.container{
+    max-width: 1200px;
+    margin: 0 auto;
+}
+/*Parte da minha navbar*/
+header{
+    display: flex;
+    padding: 3px;
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    background-color: var(--fundo_nav);
+}
+
+header img{
+    height: 75px;
+    width: 75px;
+    margin-right: 50px;
+}
+
+header > .container{
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+}
+
+header a{
+    color: #ffffff;
+    text-decoration: none;
+    text-transform: uppercase;
+    font-size: 15px;
+    display: inline-block;
+    transition: 0.2s;
+    text-shadow: 3px 3px 9px #e36414;
+}
+
+header a:hover{
+    text-shadow: 0px 0px 8px #ffffff;
+    transform: scale(1.05);
+}
+
+header nav ul{
+    list-style-type: none;
+    padding: 0; /* Remove default padding */
+    margin: 0; /* Remove default margin */
+    display: flex; /* Use flexbox for layout */
+    justify-content: flex-start; /* Align items to the left */
+}
+
+header nav ul li{
+    padding: 0 14px;
+}
+
+/* css do quiz*/
+.question {
+    margin-bottom: 20px;
+}
+
+button {
+    margin-top: 10px;
+}
+
+
+.quiz-container {
+    width: 80%;
+    max-width: 600px;
+    margin: 0 auto;
+    padding: 20px;
+    border: 1px solid #ccc;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    background-color: #fff;
+    border-radius: 8px;
+    text-align: center;
+}
+
+.container_final{
+    width: 80%;
+    max-width: 600px;
+    margin: 0 auto;
+    padding: 20px;
+    border: 1px solid #ccc;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    background-color: #fff;
+    border-radius: 8px;
+    text-align: center;
+    display: none;
+}
+.resposta-correta {
+    color: green;
+    font-weight: bold;
+}
+
+.resposta-incorreta {
+    color: red;
+    font-weight: bold;
+}
+
+
+
