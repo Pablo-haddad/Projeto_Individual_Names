@@ -138,7 +138,9 @@ function nextQuestion9() {
         alert('Por favor, selecione uma opção antes de avançar.');
     }
 }
-
+let totalAcertos = 0
+let totalErros = 0
+var id_usuario = sessionStorage.ID_USUARIO
 function enviar() {
     const selectValue = document.getElementById('q10').value;
     const currentContainer = document.getElementById('q10-container');
@@ -152,10 +154,45 @@ function enviar() {
     } else {
         alert('Por favor, selecione uma opção antes de enviar.');
     }
+    fetch("/quizRoute/cadastrarDadosQuiz", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          // crie um atributo que recebe o valor recuperado aqui
+          // Agora vá para o arquivo routes/quiz.js
+          id_UsuarioServer: id_usuario,
+          totalAcertosServer: totalAcertos
 
-}
+        }),
+      })
+        .then(function (resposta) {
+          console.log("resposta: ", resposta);
+  
+          if (resposta.ok) {
+
+            console.log("Dados do quiz cadastrados com sucesso!");
+  
+            setTimeout(() => {
+             // window.location = "Login.html";
+            }, "2000");
+  
+          } else {
+            throw "Houve um erro ao tentar realizar o cadastro do dados do quiz!";
+          }
+        })
+        .catch(function (resposta) {
+          console.log(`#ERRO: ${resposta}`);
+        });
+  
+      return false;
+    }
+
+    
 function exibirRespostas() {
     const respostasContainer = document.getElementById('respostas_quiz');
+
 
     for (let i = 0; i < respostas.length; i++) {
         const resposta = respostas[i];
@@ -165,12 +202,15 @@ function exibirRespostas() {
         if (i === 1 || i === 2 || i === 9) {
             elementoResposta.textContent = `${perguntaNumero}: ${resposta}`;
             elementoResposta.classList.add('resposta-correta');
+            totalAcertos++
         }else if (resposta === respostasCorretas[i].respostaCorreta) {
             elementoResposta.textContent = `${perguntaNumero}: ${resposta}`;
             elementoResposta.classList.add('resposta-correta');
+            totalAcertos++
         } else {
             elementoResposta.textContent = `${perguntaNumero}: ${resposta}`;
             elementoResposta.classList.add('resposta-incorreta');
+            totalErros++
         }
 
         // Adiciona a resposta ao contêiner
@@ -181,6 +221,8 @@ function exibirRespostas() {
 
 function recomecarQuiz() {
     respostas = []
+    totalAcertos = 0
+    totalErros = 0
     const respostasContainer = document.getElementById('respostas_quiz');
     respostasContainer.innerHTML = ''; // Limpa o conteúdo anterior
     // Ocultar a div de respostas
