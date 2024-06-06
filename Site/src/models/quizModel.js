@@ -11,6 +11,21 @@ function cadastrarDadosQuiz(totalAcertos,idUsuarioQuiz) {
     return database.executar(instrucaoSql);
 }
 
+function exibirDashboard() {   
+    console.log('estou acessando o banco de dados porem sem sucesso, no cadastro')
+    // Insira exatamente a query do banco aqui, lembrando da nomenclatura exata nos valores
+    //  e na ordem de inserção dos dados.
+    var instrucaoSql = `select * from usuario
+    inner join quiz on fkusuario = id
+    order by pontosAcertos desc;
+    `;
+    console.log("Executando a instrução SQL: \n" + instrucaoSql);
+    return database.executar(instrucaoSql);
+}
+
+
+
 module.exports = {
-    cadastrarDadosQuiz
+    cadastrarDadosQuiz,
+    exibirDashboard
 };

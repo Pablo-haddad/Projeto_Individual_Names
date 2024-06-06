@@ -1,4 +1,95 @@
-#grafico1 {
-    width: 500px;
-    height: 500px;
+
+
+body {
+  margin: 0;
+  padding: 0;
+  font-family: "Poppins", sans-serif;
+  background-color: black;
 }
+
+.header-left a {
+  text-decoration: none;
+  color: white;
+}
+
+.header-left {
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 999;
+  height: 100vh;
+  width: 20%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: center;
+  border-right: 3px solid #ffffff;
+  background-color: rgb(227, 100, 20);
+}
+
+.header-left h1 {
+  color: rgb(0, 0, 0);
+  text-align: center;
+}
+
+.hello {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}
+
+.hello h3 {
+  color: #000000;
+  font-weight: 300;
+  font-size: 1.2rem;
+}
+
+.hello h3 span {
+  font-weight: 800;
+}
+
+.btn-nav-white {
+  width: 40%;
+  background-color: white;
+  border: 3px solid black;
+  border-radius: 5px;
+  text-align: center;
+  padding: 2% 5%;
+  z-index: 1000;
+}
+
+.btn-nav-white h3 {
+  color: black;
+  padding: 0;
+  margin: 0;
+}
+
+.kpipai {
+  display: flex;
+  justify-content: space-around;
+  margin: 20px 0;
+  
+}
+.kpi1{
+  margin-right: -250px;
+  background-color: black;
+}
+
+.kpi2{
+  margin-right: -250px;
+  background-color: black;
+
+}
+
+.kpi1, .kpi2 {
+  display: flex;
+  width: 300px;
+  height: 180px;
+  align-items: center;
+  justify-content: center;
+   background-color: black;
+  color: white;
+  border: 2px solid #ffffff;
+  border-radius: 15px;
+}
+

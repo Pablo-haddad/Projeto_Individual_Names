@@ -1,5 +1,4 @@
 var usuarioModel = require("../models/usuarioModel");
-var aquarioModel = require("../models/aquarioModel");
 
 function autenticar(req, res) {
     var email = req.body.emailServer;
@@ -30,7 +29,7 @@ function autenticar(req, res) {
                                         senha: resultadoAutenticar[0].senha,
                                     });
                                // } else {
-                                    res.status(204).json({ aquarios: [] });
+                                
                              //   }
                            // })
                     } else if (resultadoAutenticar.length == 0) {

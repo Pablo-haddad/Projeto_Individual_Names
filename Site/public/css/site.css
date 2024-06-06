@@ -329,16 +329,17 @@ header nav ul li{
 
 .site-footer
 {
-  background-color:#26272b;
+  background-color:#000000;
   padding:45px 0 20px;
   font-size:15px;
   line-height:24px;
-  color:#737373;
+  color:#ffffff;
 }
 .site-footer hr
 {
-  border-top-color:#bbb;
-  opacity:0.5
+  border: none;
+  border-top: 1px solid #e36414; /* Adicionar uma borda laranja */
+  margin: 20px 0; /* Margem superior e inferior de 20px */
 }
 .site-footer hr
 {
@@ -347,15 +348,12 @@ header nav ul li{
 .site-footer h6
 {
   color:#fff;
-  font-size:16px;
+  font-size:12px;
   text-transform:uppercase;
-  margin-top:5px;
+  margin-top:2px;
   letter-spacing:2px
 }
-.site-footer a
-{
-  color:#737373;
-}
+
 .site-footer a:hover
 {
   color:#3366cc;
@@ -374,7 +372,7 @@ header nav ul li{
   margin-left:6px;
   margin-right:0;
   border-radius:100%;
-  background-color:#33353d
+  background-color:#1d1d1f
 }
 
 @media (max-width:991px)
@@ -399,7 +397,8 @@ header nav ul li{
 {
   padding-left:0;
   margin-bottom:0;
-  list-style:none
+  list-style:none;
+  margin-right: 20px;
 }
 .social-icons li
 {
@@ -432,7 +431,6 @@ header nav ul li{
 .social-icons a:active,.social-icons a:focus,.social-icons a:hover
 {
   color:#fff;
-  background-color:#29aafe
 }
 .social-icons a
 {
@@ -441,22 +439,15 @@ header nav ul li{
   width:34px;
   font-size:14px
 }
-.social-icons a.facebook:hover
-{
-  background-color:#3b5998
-}
-.social-icons a.twitter:hover
-{
-  background-color:#00aced
-}
 .social-icons a.linkedin:hover
 {
-  background-color:#007bb6
+  background-color:#1552d6
 }
-.social-icons a.dribbble:hover
+.social-icons a.github:hover
 {
-  background-color:#ea4c89
+  background-color:#e36414
 }
+
 @media (max-width:767px)
 {
   .social-icons li.title

@@ -1,5 +1,6 @@
 var quizModel = require("../models/quizModel");
 
+
 function cadastrarDadosQuiz(req, res) {
     // Crie uma variável que vá recuperar os valores do arquivo cadastro.html
     var idUsuarioQuiz = req.body.id_UsuarioServer;
@@ -30,7 +31,24 @@ function cadastrarDadosQuiz(req, res) {
             );
     }
 }
+function exibirDashboard(req, res) {
+
+    // var usuario_id = req.body.idusuario;
+    // console.log(usuario_id+'controllerJs')
+    quizModel.exibirDashboard()
+      .then(resultado => {
+        // Se a consulta for bem-sucedida, envia o resultado como JSON
+        res.status(200).json(resultado); 
+      })
+      .catch(erro => {
+        // Se a consulta falhar, envia a mensagem de erro como JSON
+        res.status(500).json({ error: erro.message });
+      });
+  }
+
+
 
 module.exports = {
-    cadastrarDadosQuiz
+    cadastrarDadosQuiz,
+    exibirDashboard
 }

@@ -143,7 +143,7 @@ let totalErros = 0
 var id_usuario = sessionStorage.ID_USUARIO
 function enviar() {
     const selectValue = document.getElementById('q10').value;
-    const currentContainer = document.getElementById('q10-container');
+    const currentContainer = document.getElementById('quiz-container');
     const nextContainer = document.getElementById('container_final');
 
     if (selectValue !== '') {
@@ -230,7 +230,7 @@ function recomecarQuiz() {
     containerFinal.style.display = 'none';
 
     // Exibir a primeira pergunta
-    const primeiraPergunta = document.getElementById('q1-container');
+    const primeiraPergunta = document.getElementById('quiz-container');
     primeiraPergunta.style.display = 'block';
 
     const selects = document.querySelectorAll('select');

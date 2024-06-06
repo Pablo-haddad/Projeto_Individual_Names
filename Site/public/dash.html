@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+  <head>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <title>Dashboard</title>
+
+    <link rel="stylesheet" href="css/dashboard.css" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Exo+2:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap"
+      rel="stylesheet"
+    />
+  </head>
+
+  <body onload="teste() ,validarUsuario()">
+    <div class="header-left">
+      <!-- <img class="fotoCruz" src="../assets/imgs/cruz.png" alt="" srcset="" /> -->
+      <div class="hello">
+        <h3>Olá, <span class="nome_input" id="b_usuario">nome</span>!</h3>
+      </div>
+
+      <div class="btn-nav-white">
+        <a href="site.html">
+          <h3>Home</h3>
+        </a>
+      </div>
+    </div>
+
+    <div class="kpipai">
+      <div class="kpi1" id="kpi1">Voce acertou 10 perguntas</div>
+      <div class="kpi2" id="kpi2">Voce esta na Posiçao 5</div>
+    </div>
+
+    <div style="display: flex; justify-content: center; padding: 20px">
+      <canvas
+        id="myChart1"
+        style="width: 600px; margin-left: 280px; height: 200px"
+      ></canvas>
+    </div>
+  </body>
+</html>
+<script>
+    const names = [];
+  const data2 = []; // Array para armazenar os dados do eixo Y (Pontuações)
+  
+  var Usuario = sessionStorage.NOME_USUARIO;
+
+  function validarUsuario() {
+    document.getElementById("b_usuario").textContent = Usuario;
+  }
+  function teste() {
+    // var idusuario = sessionStorage.getItem("ID_USUARIO");
+
+    fetch(`/quizRoute/exibirDashboard`, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+    //   body: JSON.stringify({ idusuario: idusuario }),
+    })
+      .then((response) => {
+        if (!response.ok) {
+          return response.json().then((error) => {
+            throw new Error(error.message);
+          });
+        }
+        return response.json();
+      })
+      .then((resultado) => {
+        // Aqui a resposta está pronta
+        // Agora você pode acessar os dados do formulário
+        resultado.forEach((resultado) => {
+          // 2. Iterando sobre os Dados da API:
+          // Para cada objeto 'pontuacao' recebido da API:
+        console.log(resultado)
+          // 3. Formatando e Adicionando Rótulos:
+        //   data2.push(resultado);
+          // - Crie uma string formatada com "Usuário" e o ID do usuário.
+          // - Adicione essa string formatada ao array 'labels' usando 'push'.
+          // 4. Adicionando Pontuações:
+          names.push(resultado.nome);
+          data2.push(resultado.pontosAcertos);
+
+
+        //   console.log(resultado.acertos);
+          // Outros campos
+          // ...
+        });
+        // AQUI OS GrAfiCOS
+        console.log(names)
+        console.log(data2)
+        let somaAcertos = 0
+        for( let i = 0 ; i < data2.length ; i++){
+            if(names[i] == Usuario)
+           somaAcertos += data2[i] 
+        }
+
+        var posicao = (names.indexOf(Usuario) + 1 )
+        kpi1.innerHTML = `Voce acertou ${somaAcertos} perguntas`
+        kpi2.innerHTML = `Voce esta na Posiçao ${posicao}`
+        // Dados do gráfico
+        // const labels = ["1", "2", "3", "4", "5" , "6", "7","8","9","10"];
+
+        // Chamando a função para exibir o gráfico
+
+        const ctx1 = document.getElementById("myChart1").getContext("2d");
+
+        new Chart(ctx1, {
+          type: "bar", 
+          data: {
+            labels: names,
+            datasets: [
+              {
+                label: "Melhores Pontuações",
+                data: data2,    
+                backgroundColor: "rgb(227, 100, 20)",
+                borderColor: "rgba(255, 255, 255, 1)",
+                borderWidth: 1,
+              },
+            ],
+          },
+          options: {
+            scales: {
+              y: {
+                beginAtZero: true,
+              },
+            },
+          },
+        });
+      })
+      .catch((error) =>
+        console.error("Erro ao buscar os dados das contas:", error)
+      );
+  }
+  
+</script>
+    

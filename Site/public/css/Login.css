@@ -96,6 +96,12 @@ h3{
   box-shadow: 0px 5px 10px rgba(0, 0, 0,3.0);
 }
 
+#botao-jatenho{
+  padding: 20px;
+  display: flex;
+  align-items: center;
+}
+
 .loading-div {
   width: 50px;
   display: none;
